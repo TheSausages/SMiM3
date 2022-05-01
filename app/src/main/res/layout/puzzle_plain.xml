@@ -9,27 +9,28 @@
         android:id="@+id/puzzle_plain_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="@color/green"
-        android:gravity="center"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:weightSum="4"
+        android:orientation="vertical" />
 
-        <View
-            android:id="@+id/puzzle_element"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@color/black"
-            android:layout_gravity="center" />
-    </LinearLayout>
-
-    <LinearLayout
+    <HorizontalScrollView
         android:id="@+id/puzzle_plain_elements"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:background="@color/blue"
-        android:gravity="center"
         android:layout_weight="4">
-    </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/puzzle_plain_elements_grid"
+            android:layout_width="wrap_content"
+            android:minHeight="105dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/blue"
+            android:rowOrderPreserved="false"
+            android:divider="@drawable/divider"
+            android:showDividers="middle"
+            android:alignmentMode="alignMargins">
+        </LinearLayout>
+    </HorizontalScrollView>
 </LinearLayout>

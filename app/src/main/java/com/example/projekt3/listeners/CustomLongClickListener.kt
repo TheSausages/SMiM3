@@ -6,7 +6,7 @@ import android.view.View
 
 class CustomLongClickListener: View.OnLongClickListener {
     override fun onLongClick(view: View): Boolean {
-        val clipText = "Clip text"
+        val clipText = ""
         val clipItem = ClipData.Item(clipText)
         val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
         val data = ClipData(clipText, mimeTypes, clipItem)
