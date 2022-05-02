@@ -21,6 +21,7 @@ class PuzzleSelectorActivity: AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.puzzle_selector_id)
 
         images.add("Ranni.jpg")
+        images.add("Lake.jpg")
 
         adapter = RecycleViewAdapter(this, images)
 
