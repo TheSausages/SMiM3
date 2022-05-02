@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">Projekt3</string>
+    <string name="app_name">Puzzle Game</string>
     <string name="image_view_description">Whole image</string>
+    <string name="puzzle_selector_text">Puzzle %d: %s</string>
+    <string name="puzzle_completed_message">Puzzle completed in %d seconds!</string>
+    <string name="puzzle_completed_button_message">Click to go back to menu</string>
 </resources>

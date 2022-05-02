@@ -20,6 +20,7 @@
         </activity>
 
         <activity android:name=".activities.PuzzleActivity" />
+        <activity android:name=".activities.PuzzleSelectorActivity" />
     </application>
 
 </manifest>

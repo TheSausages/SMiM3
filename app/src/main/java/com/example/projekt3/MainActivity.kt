@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.projekt3.activities.PuzzleActivity
+import com.example.projekt3.activities.PuzzleSelectorActivity
 import com.example.projekt3.listeners.CustomDragListener
 import com.example.projekt3.listeners.CustomLongClickListener
 import java.io.File
@@ -19,10 +20,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.puzzle_plain)
 
-        val puzzleActivity = Intent(this, PuzzleActivity::class.java)
+        val puzzleActivity = Intent(this, PuzzleSelectorActivity::class.java)
         puzzleActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
-        puzzleActivity.putExtra("puzzleImagePath", "puzzle1.jpg")
 
         startActivity(puzzleActivity)
     }

@@ -9,9 +9,9 @@ class WinConditionHierarchyListener(
     private val winningCondition: WinningCondition,
     private val onWinning: () -> Unit
 ): ViewGroup.OnHierarchyChangeListener {
-    override fun onChildViewAdded(p0: View?, p1: View?) {
+    override fun onChildViewAdded(parent: View, child: View) {
         winningCondition.checkForWin(boardView) { onWinning() }
     }
 
-    override fun onChildViewRemoved(p0: View?, p1: View?) { }
+    override fun onChildViewRemoved(parent: View, child: View) { }
 }

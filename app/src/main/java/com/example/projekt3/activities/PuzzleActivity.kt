@@ -11,24 +11,26 @@ import androidx.core.view.children
 import androidx.core.view.descendants
 import androidx.lifecycle.MutableLiveData
 import com.example.projekt3.R
+import com.example.projekt3.dialog.PuzzleCompletedDialogFragment
 import com.example.projekt3.models.Puzzle
 import com.example.projekt3.models.PuzzleBoardElement
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.time.temporal.Temporal
 import java.time.temporal.TemporalUnit
+import kotlin.properties.Delegates
 import kotlin.system.measureTimeMillis
 import kotlin.time.measureTime
 
 class PuzzleActivity: AppCompatActivity() {
-    private lateinit var startTime: Instant
+    private var startTime by Delegates.notNull<Long>()
 
     companion object {
         const val NUMBER_ROWS = 4
         const val NUMBER_COLUMNS = 3
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.puzzle_plain)
@@ -48,7 +50,7 @@ class PuzzleActivity: AppCompatActivity() {
         puzzleElementsView.minimumWidth = windowManager.defaultDisplay.width
         puzzleElementsView.minimumHeight = windowManager.defaultDisplay.height
 
-        startTime = Instant.now()
+        startTime = System.currentTimeMillis()
 
         Puzzle.Builder(
             this,
@@ -58,18 +60,15 @@ class PuzzleActivity: AppCompatActivity() {
             boardView,
             puzzleElementsView
         )
-            .onWinning {
-                this.finish()
-            }
+            .onWinning { onWin() }
             .build()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onDestroy() {
-        val endTime = Instant.now()
+    private fun onWin() {
+        val endTime = System.currentTimeMillis()
 
-        println(ChronoUnit.SECONDS.between(startTime, endTime))
+        val timeBetween = (endTime - startTime) / 1000
 
-        super.onDestroy()
+        PuzzleCompletedDialogFragment(timeBetween).show(supportFragmentManager, "Completion-Pop-Up")
     }
 }

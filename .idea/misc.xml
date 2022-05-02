@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/programowanie/Projekt3/app/src/main/res/drawable/divider.xml" value="0.1775" />
         <entry key="..\:/programowanie/Projekt3/app/src/main/res/layout/activity_main.xml" value="0.575" />
+        <entry key="..\:/programowanie/Projekt3/app/src/main/res/layout/puzzle_main_menu.xml" value="0.2796352583586626" />
         <entry key="..\:/programowanie/Projekt3/app/src/main/res/layout/puzzle_plain.xml" value="0.575" />
+        <entry key="..\:/programowanie/Projekt3/app/src/main/res/layout/puzzle_selector.xml" value="0.1291390728476821" />
+        <entry key="..\:/programowanie/Projekt3/app/src/main/res/layout/puzzle_selector_item.xml" value="0.25277777777777777" />
       </map>
     </option>
   </component>
