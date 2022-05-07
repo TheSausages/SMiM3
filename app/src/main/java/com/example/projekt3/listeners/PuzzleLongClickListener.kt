@@ -4,7 +4,7 @@ import android.content.ClipData
 import android.content.ClipDescription
 import android.view.View
 
-class CustomLongClickListener: View.OnLongClickListener {
+class PuzzleLongClickListener: View.OnLongClickListener {
     override fun onLongClick(view: View): Boolean {
         val clipText = ""
         val clipItem = ClipData.Item(clipText)

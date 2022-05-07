@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projekt3.R
-import com.example.projekt3.adapters.RecycleViewAdapter
+import com.example.projekt3.adapters.PuzzleSelectorViewAdapter
 
 class PuzzleSelectorActivity: AppCompatActivity() {
     /** Image adapter for the gallery. */
-    private lateinit var adapter: RecycleViewAdapter
+    private lateinit var adapter: PuzzleSelectorViewAdapter
 
     /** List of paths to the puzzle images. */
     private var images: ArrayList<String> = ArrayList()
@@ -20,10 +20,10 @@ class PuzzleSelectorActivity: AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.puzzle_selector_id)
 
-        images.add("Ranni.jpg")
-        images.add("Lake.jpg")
+        images.add("ranni.jpg")
+        images.add("lake.jpg")
 
-        adapter = RecycleViewAdapter(this, images)
+        adapter = PuzzleSelectorViewAdapter(this, images)
 
         recyclerView.layoutManager = GridLayoutManager(this, 1)
         recyclerView.adapter = adapter

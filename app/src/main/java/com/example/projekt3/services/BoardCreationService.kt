@@ -6,7 +6,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.example.projekt3.listeners.CustomDragListener
+import com.example.projekt3.listeners.PuzzleDragListener
 import com.example.projekt3.models.PuzzleBoardElement
 import com.example.projekt3.models.imageview.ResizingImageView
 import java.util.*
@@ -21,7 +21,7 @@ fun createBoard(context: Context, numberOfRows: Int, numberOfColumns: Int): List
 }
 
 fun createRowLinearView(context: Context, numOfElementsInRow: Int): LinearLayout =
-    createRowLinearView(context, numOfElementsInRow, CustomDragListener(context, ResizingImageView::class.java))
+    createRowLinearView(context, numOfElementsInRow, PuzzleDragListener(ResizingImageView::class.java))
 
 fun createRowLinearView(context: Context, numOfElementsInRow: Int, dragListener: View.OnDragListener): LinearLayout {
     val row = LinearLayout(context)
@@ -42,7 +42,7 @@ fun createRowLinearView(context: Context, numOfElementsInRow: Int, dragListener:
 }
 
 fun createRowElement(context: Context): LinearLayout =
-    createRowElement(context, CustomDragListener(context, ResizingImageView::class.java))
+    createRowElement(context, PuzzleDragListener(ResizingImageView::class.java))
 
 fun createRowElement(context: Context, dragListener: View.OnDragListener): LinearLayout {
     val element = PuzzleBoardElement(context)

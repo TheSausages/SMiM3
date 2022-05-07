@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.example.projekt3.listeners.CustomLongClickListener
+import com.example.projekt3.listeners.PuzzleLongClickListener
 
 class NonResizingImageView(context: Context): androidx.appcompat.widget.AppCompatImageView(context) {
     companion object {
@@ -26,7 +26,7 @@ class NonResizingImageView(context: Context): androidx.appcompat.widget.AppCompa
             imageView.id = ImageView.generateViewId()
             imageView.contentDescription = contentDescription
             imageView.scaleType = ScaleType.FIT_XY
-            imageView.setOnLongClickListener(CustomLongClickListener())
+            imageView.setOnLongClickListener(PuzzleLongClickListener())
 
             return imageView
         }
@@ -42,7 +42,7 @@ class NonResizingImageView(context: Context): androidx.appcompat.widget.AppCompa
         this.id = imageView.id
         this.contentDescription = imageView.contentDescription
         this.scaleType = ScaleType.FIT_XY
-        this.setOnLongClickListener(CustomLongClickListener())
+        this.setOnLongClickListener(PuzzleLongClickListener())
     }
 
     fun toResizingIMageView(): ResizingImageView {

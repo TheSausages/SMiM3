@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.children
 import androidx.core.view.descendants
-import com.example.projekt3.listeners.CustomDragListener
+import com.example.projekt3.listeners.PuzzleDragListener
 import com.example.projekt3.listeners.WinConditionHierarchyListener
 import com.example.projekt3.models.imageview.NonResizingImageView
 import com.example.projekt3.models.imageview.ResizingImageView
@@ -34,8 +34,8 @@ class Puzzle(
         val puzzleBoardView: ViewGroup,
         val puzzlePiecesHolderView: ViewGroup,
         var winningCondition: WinningCondition = DefaultWinningCondition(),
-        var puzzlePiecesOnDragListener: View.OnDragListener = CustomDragListener(context, ResizingImageView::class.java),
-        var puzzlePiecesHolderOnDragListener: View.OnDragListener = CustomDragListener(context, NonResizingImageView::class.java),
+        var puzzlePiecesOnDragListener: View.OnDragListener = PuzzleDragListener(ResizingImageView::class.java),
+        var puzzlePiecesHolderOnDragListener: View.OnDragListener = PuzzleDragListener(NonResizingImageView::class.java),
         var onWinning: () -> Unit = { println("WON!") }
     ) {
         fun puzzlePiecesOnDragListener(puzzlePiecesListener: View.OnDragListener) =

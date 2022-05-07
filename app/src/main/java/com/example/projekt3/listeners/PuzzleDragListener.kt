@@ -6,13 +6,11 @@ import android.view.DragEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.example.projekt3.models.PuzzleBoardElement
 import com.example.projekt3.models.imageview.NonResizingImageView
 import com.example.projekt3.models.imageview.ResizingImageView
 
-class CustomDragListener<T: ImageView>(
-    private val context: Context,
-    private val klass: Class<T>
-    ): View.OnDragListener {
+class PuzzleDragListener<T: ImageView>(private val klass: Class<T>): View.OnDragListener {
     override fun onDrag(view: View, dragEvent: DragEvent): Boolean {
         return when(dragEvent.action) {
             DragEvent.ACTION_DRAG_STARTED -> {
@@ -42,15 +40,30 @@ class CustomDragListener<T: ImageView>(
             DragEvent.ACTION_DROP -> {
                 view.invalidate()
 
-                val v = dragEvent.localState as ImageView
+                val puzzleElement = dragEvent.localState as ImageView
 
-                val previousOwner = v.parent as ViewGroup
-                previousOwner.removeView(v)
+                val destination = view
 
-                val destination = view as ViewGroup
-                destination.addView(v.getCorrectImageViewVersion())
+                if (destination is PuzzleBoardElement && destination.correctPuzzlePieceId != puzzleElement.id) {
+                    puzzleElement.visibility = View.VISIBLE
 
-                v.visibility = View.VISIBLE
+                    return false
+                }
+
+                val previousOwner = puzzleElement.parent as ViewGroup
+                previousOwner.removeView(puzzleElement)
+
+                if (destination is ViewGroup) {
+                    destination.addView(puzzleElement.getCorrectImageViewVersion())
+                } else {
+                    if (destination.parent is ViewGroup) {
+                        (destination.parent as ViewGroup).addView(puzzleElement.getCorrectImageViewVersion())
+                    } else {
+                        error("Neither the view nor it's parent is a Viewgroup!")
+                    }
+                }
+
+                puzzleElement.visibility = View.VISIBLE
 
                 return true
             }

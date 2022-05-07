@@ -3,7 +3,7 @@ package com.example.projekt3.models.imageview
 import android.content.Context
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.example.projekt3.listeners.CustomLongClickListener
+import com.example.projekt3.listeners.PuzzleLongClickListener
 
 class ResizingImageView(context: Context): androidx.appcompat.widget.AppCompatImageView(context) {
     constructor(imageView: ImageView): this(imageView.context) {
@@ -16,7 +16,7 @@ class ResizingImageView(context: Context): androidx.appcompat.widget.AppCompatIm
         this.id = ImageView.generateViewId()
         this.contentDescription = imageView.contentDescription
         this.scaleType = ScaleType.FIT_XY
-        this.setOnLongClickListener(CustomLongClickListener())
+        this.setOnLongClickListener(PuzzleLongClickListener())
     }
 
     fun toNonResizingImageView(): NonResizingImageView {

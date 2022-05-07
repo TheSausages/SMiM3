@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projekt3.R
 import com.example.projekt3.activities.PuzzleActivity
 
-class RecycleViewAdapter(
+class PuzzleSelectorViewAdapter(
     val context: Context,
     private val puzzleImageView: List<String>
-): RecyclerView.Adapter<RecycleViewAdapter.RecyclerViewHolder>() {
-    class RecyclerViewHolder(puzzleTextView: View): RecyclerView.ViewHolder(puzzleTextView) {
-        val textView: TextView = puzzleTextView.findViewById(R.id.puzzle_selector_item)
+): RecyclerView.Adapter<PuzzleSelectorViewAdapter.PuzzleSelectorViewHolder>() {
+    class PuzzleSelectorViewHolder(puzzleTextView: View): RecyclerView.ViewHolder(puzzleTextView) {
+        val puzzleSelectorItemView: TextView = puzzleTextView.findViewById(R.id.puzzle_selector_item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PuzzleSelectorViewHolder {
         // Inflate Layout in this method which we have created.
         val view: View = LayoutInflater.from(context).inflate(
             R.layout.puzzle_selector_item,
@@ -26,13 +26,13 @@ class RecycleViewAdapter(
             false
         )
 
-        return RecyclerViewHolder(view)
+        return PuzzleSelectorViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        holder.textView.text = context.resources.getString(R.string.puzzle_selector_text, position + 1, puzzleImageView[position].split(".")[0])
+    override fun onBindViewHolder(holder: PuzzleSelectorViewHolder, position: Int) {
+        holder.puzzleSelectorItemView.text = context.resources.getString(R.string.puzzle_selector_text, position + 1, puzzleImageView[position].split(".")[0])
 
-        holder.textView.setOnClickListener {
+        holder.puzzleSelectorItemView.setOnClickListener {
             val intent = Intent(context, PuzzleActivity::class.java)
             intent.putExtra("puzzleImagePath", puzzleImageView[position])
 
