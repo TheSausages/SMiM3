@@ -13,7 +13,7 @@ class ResizingImageView(context: Context): androidx.appcompat.widget.AppCompatIm
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-        this.id = ImageView.generateViewId()
+        this.id = imageView.id
         this.contentDescription = imageView.contentDescription
         this.scaleType = ScaleType.FIT_XY
         this.setOnLongClickListener(PuzzleLongClickListener())

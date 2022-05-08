@@ -45,7 +45,7 @@ class NonResizingImageView(context: Context): androidx.appcompat.widget.AppCompa
         this.setOnLongClickListener(PuzzleLongClickListener())
     }
 
-    fun toResizingIMageView(): ResizingImageView {
+    fun toResizingImageView(): ResizingImageView {
         return ResizingImageView(this)
     }
 }
