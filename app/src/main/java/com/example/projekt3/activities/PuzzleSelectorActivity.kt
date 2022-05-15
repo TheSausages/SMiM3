@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projekt3.R
 import com.example.projekt3.adapters.PuzzleSelectorViewAdapter
+import com.example.projekt3.services.getPuzzlePaths
 
 class PuzzleSelectorActivity: AppCompatActivity() {
     /** Image adapter for the gallery. */
@@ -20,8 +21,7 @@ class PuzzleSelectorActivity: AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.puzzle_selector_id)
 
-        images.add("ranni.jpg")
-        images.add("lake.jpg")
+        images.addAll(getPuzzlePaths(this))
 
         adapter = PuzzleSelectorViewAdapter(this, images)
 

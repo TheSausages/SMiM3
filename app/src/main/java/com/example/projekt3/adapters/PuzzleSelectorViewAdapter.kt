@@ -30,7 +30,13 @@ class PuzzleSelectorViewAdapter(
     }
 
     override fun onBindViewHolder(holder: PuzzleSelectorViewHolder, position: Int) {
-        holder.puzzleSelectorItemView.text = context.resources.getString(R.string.puzzle_selector_text, position + 1, puzzleImageView[position].split(".")[0])
+        holder.puzzleSelectorItemView.text = context.resources.getString(
+            R.string.puzzle_selector_text, position + 1,
+            puzzleImageView[position]
+                .split("/")
+                .last()
+                .split(".")[0]
+        )
 
         holder.puzzleSelectorItemView.setOnClickListener {
             val intent = Intent(context, PuzzleActivity::class.java)

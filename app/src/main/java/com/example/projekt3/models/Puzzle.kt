@@ -18,7 +18,7 @@ class PuzzleBoardElement(context: Context): LinearLayout(context) {
     var correctPuzzlePieceId: Int? = -1
 
     fun checkWinCon(): Boolean {
-        return childCount == 1 && children.map { it.id == correctPuzzlePieceId }.all { true }
+        return childCount == 1 && children.map { it.id == correctPuzzlePieceId }.all { it }
     }
 }
 

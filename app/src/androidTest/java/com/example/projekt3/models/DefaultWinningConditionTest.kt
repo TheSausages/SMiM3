@@ -1,5 +1,7 @@
 package com.example.projekt3.models
 
+import android.content.Context
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -100,29 +102,202 @@ class DefaultWinningConditionTest {
     }
 
     @Test
-    fun checkForWin_CorrectStructureWithWin_NoException() {
+    fun checkForWin_CorrectStructureWithSingleElementNoInserted_NoExceptionWithoutWin() {
         //given
         var board: ViewGroup? = null
         activityScenarioRule.scenario.onActivity {
             board = LinearLayout(it)
 
-            val boardElementView1 = createRowElement(it)
-            val boardElementView2 = createRowElement(it)
-
-            val imageView1 = ImageView(it)
-            imageView1.id = ImageView.generateViewId()
-            val imageView2 = ImageView(it)
-            imageView2.id = ImageView.generateViewId()
-
-            (boardElementView1 as PuzzleBoardElement).correctPuzzlePieceId = imageView1.id
-            (boardElementView2 as PuzzleBoardElement).correctPuzzlePieceId = imageView2.id
-
-            boardElementView1.addView(imageView1)
-            boardElementView2.addView(imageView2)
+            val firstPair = createViewPairForBoard(it)
 
             val rowView = LinearLayout(it)
-            rowView.addView(boardElementView1)
-            rowView.addView(boardElementView2)
+            rowView.addView(firstPair.first)
+
+            board!!.addView(rowView)
+        }
+
+        //when
+        DefaultWinningCondition().checkForWin(board!!, ifWin)
+
+        //then
+        assertThat(outContent.toString(), equalTo(""))
+    }
+
+    @Test
+    fun checkForWin_CorrectStructureWithManyElementsNoInserted_NoExceptionWithoutWin() {
+        //given
+        var board: ViewGroup? = null
+        activityScenarioRule.scenario.onActivity {
+            board = LinearLayout(it)
+
+            val firstPair = createViewPairForBoard(it)
+            val secondPair = createViewPairForBoard(it)
+
+            val rowView = LinearLayout(it)
+            rowView.addView(firstPair.first)
+            rowView.addView(secondPair.first)
+
+            board!!.addView(rowView)
+        }
+
+        //when
+        DefaultWinningCondition().checkForWin(board!!, ifWin)
+
+        //then
+        assertThat(outContent.toString(), equalTo(""))
+    }
+
+    @Test
+    fun checkForWin_CorrectStructureWithManyElementsSingle_NoExceptionWithoutWin() {
+        //given
+        var board: ViewGroup? = null
+        activityScenarioRule.scenario.onActivity {
+            board = LinearLayout(it)
+
+            val firstPair = createViewPairForBoard(it)
+            val secondPair = createViewPairForBoard(it)
+
+            val rowView = LinearLayout(it)
+            rowView.addView(firstPair.first)
+            rowView.addView(secondPair.first)
+
+            board!!.addView(rowView)
+        }
+
+        //when
+        DefaultWinningCondition().checkForWin(board!!, ifWin)
+
+        //then
+        assertThat(outContent.toString(), equalTo(""))
+    }
+
+    @Test
+    fun checkForWin_CorrectStructureWithManyElement_NoExceptionWithoutWin() {
+        //given
+        var board: ViewGroup? = null
+        activityScenarioRule.scenario.onActivity {
+            board = LinearLayout(it)
+
+            val firstPair = createViewPairForBoard(it)
+            val secondPair = createViewPairForBoard(it)
+
+            firstPair.first.addView(firstPair.second)
+
+            val rowView = LinearLayout(it)
+            rowView.addView(firstPair.first)
+            rowView.addView(secondPair.first)
+
+            board!!.addView(rowView)
+        }
+
+        //when
+        DefaultWinningCondition().checkForWin(board!!, ifWin)
+
+        //then
+        assertThat(outContent.toString(), equalTo(""))
+    }
+
+    @Test
+    fun checkForWin_CorrectStructureWithManyElementsSingleInserted_NoExceptionWithoutWin() {
+        //given
+        var board: ViewGroup? = null
+        activityScenarioRule.scenario.onActivity {
+            board = LinearLayout(it)
+
+            val firstPair = createViewPairForBoard(it)
+            val secondPair = createViewPairForBoard(it)
+
+            firstPair.first.addView(firstPair.second)
+
+            val rowView = LinearLayout(it)
+            rowView.addView(firstPair.first)
+            rowView.addView(secondPair.first)
+
+            board!!.addView(rowView)
+        }
+
+        //when
+        DefaultWinningCondition().checkForWin(board!!, ifWin)
+
+        //then
+        assertThat(outContent.toString(), equalTo(""))
+    }
+
+    @Test
+    fun checkForWin_CorrectStructureWithManyElementsManyInsertedNotAll_NoExceptionWithoutWin() {
+        //given
+        var board: ViewGroup? = null
+        activityScenarioRule.scenario.onActivity {
+            board = LinearLayout(it)
+
+            val firstPair = createViewPairForBoard(it)
+            val secondPair = createViewPairForBoard(it)
+            val thirdPair = createViewPairForBoard(it)
+
+            firstPair.first.addView(firstPair.second)
+            secondPair.first.addView(secondPair.second)
+
+            val rowView = LinearLayout(it)
+            rowView.addView(firstPair.first)
+            rowView.addView(secondPair.first)
+            rowView.addView(thirdPair.first)
+
+            board!!.addView(rowView)
+        }
+
+        //when
+        DefaultWinningCondition().checkForWin(board!!, ifWin)
+
+        //then
+        assertThat(outContent.toString(), equalTo(""))
+    }
+
+    @Test
+    fun checkForWin_CorrectStructureWithManyElementsManyInsertedWrongPlacement_NoExceptionWithoutWin() {
+        //given
+        var board: ViewGroup? = null
+        activityScenarioRule.scenario.onActivity {
+            board = LinearLayout(it)
+
+            val firstPair = createViewPairForBoard(it)
+            val secondPair = createViewPairForBoard(it)
+            val thirdPair = createViewPairForBoard(it)
+
+            firstPair.first.addView(firstPair.second)
+            secondPair.first.addView(thirdPair.second)
+            thirdPair.first.addView(secondPair.second)
+
+            val rowView = LinearLayout(it)
+            rowView.addView(firstPair.first)
+            rowView.addView(secondPair.first)
+            rowView.addView(thirdPair.first)
+
+            board!!.addView(rowView)
+        }
+
+        //when
+        DefaultWinningCondition().checkForWin(board!!, ifWin)
+
+        //then
+        assertThat(outContent.toString(), equalTo(""))
+    }
+
+    @Test
+    fun checkForWin_CorrectStructureWithManyElements_NoExceptionWithWin() {
+        //given
+        var board: ViewGroup? = null
+        activityScenarioRule.scenario.onActivity {
+            board = LinearLayout(it)
+
+            val firstPair = createViewPairForBoard(it)
+            val secondPair = createViewPairForBoard(it)
+
+            firstPair.first.addView(firstPair.second)
+            secondPair.first.addView(secondPair.second)
+
+            val rowView = LinearLayout(it)
+            rowView.addView(firstPair.first)
+            rowView.addView(secondPair.first)
 
             board!!.addView(rowView)
         }
@@ -132,5 +307,16 @@ class DefaultWinningConditionTest {
 
         //then
         assertThat(outContent.toString(), equalTo(winText))
+    }
+
+    private fun createViewPairForBoard(context: Context): Pair<ViewGroup, View> {
+        val boardElementView = createRowElement(context)
+
+        val imageView = ImageView(context)
+        imageView.id = ImageView.generateViewId()
+
+        (boardElementView as PuzzleBoardElement).correctPuzzlePieceId = imageView.id
+
+        return Pair(boardElementView, imageView)
     }
 }
